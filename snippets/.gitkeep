@@ -1,0 +1,8 @@
+# Snippets folder
+# Contains reusable Liquid code snippets
+
+## Planned snippets:
+- gradient-overlay.liquid (overlay system)
+- navigation-menu.liquid (modular navigation)
+- product-card.liquid (product display)
+- social-icons.liquid

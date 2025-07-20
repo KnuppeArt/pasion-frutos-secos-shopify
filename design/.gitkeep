@@ -1,0 +1,8 @@
+# Design folder
+# Contains design resources and references
+
+## Structure:
+- /references/ (inspiration images)
+- /mockups/ (design mockups)
+- /ai-prompts/ (image generation prompts)
+- /brand-assets/ (logos, colors, fonts)

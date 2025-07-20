@@ -1,0 +1,9 @@
+# Documentation folder
+# Contains detailed project documentation
+
+## Planned docs:
+- SETUP_GUIDE.md (installation instructions)
+- FEATURES.md (complete feature list)
+- CUSTOMIZATION.md (customization guide)
+- TROUBLESHOOTING.md (common issues)
+- API_REFERENCE.md (admin controls reference)

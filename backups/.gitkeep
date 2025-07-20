@@ -1,0 +1,9 @@
+# Backups folder
+# Contains backup files and versions
+
+## Structure:
+- /original-dawn/ (original Dawn theme backup)
+- /versions/ (dated version backups)
+- /critical-files/ (important file backups)
+
+⚠️ Note: These files are for local development only

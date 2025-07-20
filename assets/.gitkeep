@@ -1,0 +1,8 @@
+# Assets folder
+# Contains CSS, JS, and other theme assets
+
+## Planned assets:
+- custom-styles.css (global custom styles)
+- hero-functions.js (hero specific JavaScript)
+- categories-animations.css
+- product-cards.css

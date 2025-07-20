@@ -1,0 +1,12 @@
+# Sections folder
+# Contains custom Shopify sections
+
+## Current sections:
+- hero-integrated.liquid ✅ (902 lines, 68 admin controls)
+
+## Planned sections:
+- categories-section.liquid (next priority)
+- featured-products.liquid
+- banner-announcement.liquid
+- instagram-feed.liquid
+- footer-premium.liquid

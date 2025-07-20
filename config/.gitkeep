@@ -1,0 +1,6 @@
+# Config folder
+# Contains theme configuration files
+
+## Files:
+- settings_schema.json (theme settings)
+- settings_data.json (theme data - not in repo)

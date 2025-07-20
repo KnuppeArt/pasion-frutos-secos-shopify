@@ -1,0 +1,8 @@
+# Templates folder
+# Contains Shopify template JSON files
+
+## Planned templates:
+- index.json (homepage with custom sections)
+- collection.json (shop page)
+- product.json (product page)
+- page.json (static pages)
