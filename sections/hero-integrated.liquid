@@ -1,0 +1,1456 @@
+<!-- sections/hero-integrated.liquid -->
+<div class="hero-integrated" 
+     id="hero-{{ section.id }}"
+     style="
+       --hero-bg-color: {{ section.settings.bg_color }};
+       --hero-bg-overlay: {{ section.settings.bg_overlay_opacity }}%;
+       --hero-min-height: {{ section.settings.hero_height }}vh;
+       --nav-bg-color: {{ section.settings.nav_bg_color }};
+       --nav-text-color: {{ section.settings.nav_text_color }};
+       --nav-hover-color: {{ section.settings.nav_hover_color }};
+       --logo-height: {{ section.settings.logo_height }}px;
+       --primary-color: {{ section.settings.primary_color }};
+       --text-color: {{ section.settings.text_color }};
+       --subheading-color: {{ section.settings.subheading_color }};
+       --description-color: {{ section.settings.description_color }};
+       --button-bg: {{ section.settings.button_bg_color }};
+       --button-text: {{ section.settings.button_text_color }};
+       --button-hover-bg: {{ section.settings.button_hover_bg }};
+       --button-hover-text: {{ section.settings.button_hover_text }};
+       --container-padding: {{ section.settings.container_padding }}px;
+       --text-align: {{ section.settings.text_alignment }};
+       --nav-height: {{ section.settings.nav_height }}px;
+       --nav-font-size: {{ section.settings.nav_font_size }}px;
+       --glass-opacity: {{ section.settings.glass_opacity }}%;
+       --glass-blur: {{ section.settings.glass_blur }}px;
+       --scroll-threshold: {{ section.settings.scroll_threshold }};
+       --enable-sticky: {{ section.settings.enable_sticky_nav }};
+       --overlay-type: {{ section.settings.overlay_type }};
+       --gradient-direction: {{ section.settings.gradient_direction }};
+       --gradient-color-1: {{ section.settings.gradient_color_1 }};
+       --gradient-color-2: {{ section.settings.gradient_color_2 }};
+       --gradient-opacity-1: {{ section.settings.gradient_opacity_1 }}%;
+       --gradient-opacity-2: {{ section.settings.gradient_opacity_2 }}%;
+       --gradient-midpoint: {{ section.settings.gradient_midpoint }}%;
+     ">
+  
+  <!-- Background Image -->
+  {% if section.settings.bg_image != blank %}
+    <div class="hero-bg-image" 
+         style="background-image: url('{{ section.settings.bg_image | image_url: width: 1920 }}');">
+    </div>
+  {% endif %}
+  
+  <!-- Background Overlay -->
+  <div class="hero-bg-overlay" 
+       data-overlay-type="{{ section.settings.overlay_type }}"
+       data-direction="{{ section.settings.gradient_direction }}"></div>
+
+  <!-- Navigation integrada -->
+  {% if section.settings.show_navigation %}
+  <nav class="hero-nav">
+    <div class="nav-container">
+      <!-- Menú izquierda -->
+      <div class="nav-left">
+        {% if section.settings.show_desktop_menu %}
+        <ul class="nav-menu">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'menu_item' %}
+                <li>
+                  <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+                </li>
+            {% endcase %}
+          {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <!-- Mobile hamburger -->
+        <button class="mobile-menu-toggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      
+      <!-- Logo centro -->
+      <div class="nav-center">
+        <a href="/" class="logo-link">
+          {% if section.settings.logo != blank %}
+            <img src="{{ section.settings.logo | image_url: width: 300 }}" 
+                 alt="{{ shop.name }}" 
+                 class="logo-img">
+          {% else %}
+            <span class="logo-text">{{ section.settings.logo_text | default: shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+      
+      <!-- Acciones derecha -->
+      <div class="nav-right">
+        {% if section.settings.show_search %}
+        <a href="/search" class="nav-icon" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        {% endif %}
+        
+        {% if section.settings.show_account %}
+        <a href="/account" class="nav-icon" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16 19V17C16 15.8954 15.1046 15 14 15H6C4.89543 15 4 15.8954 4 17V19M12 7C12 9.20914 10.2091 11 8 11C5.79086 11 4 9.20914 4 7C4 4.79086 5.79086 3 8 3C10.2091 3 12 4.79086 12 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        {% endif %}
+        
+        {% if section.settings.show_cart %}
+        <a href="/cart" class="nav-icon cart-link" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 7H15L14 12H6L5 7ZM5 7L4 3H1M6 16C6 16.5523 6.44772 17 7 17C7.55228 17 8 16.5523 8 16C8 15.4477 7.55228 15 7 15C6.44772 15 6 15.4477 6 16ZM13 16C13 16.5523 13.4477 17 14 17C14.5523 17 15 16.5523 15 16C15 15.4477 14.5523 15 14 15C13.4477 15 13 15.4477 13 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {% if section.settings.show_cart_count %}
+            <span class="cart-count">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <div class="hero-container">
+      <!-- Texto -->
+      <div class="hero-text {% if section.settings.reverse_layout %}order-2{% else %}order-1{% endif %}">
+        {% if section.settings.subheading != blank %}
+          <p class="hero-subheading" 
+             style="font-size: {{ section.settings.subheading_size }}px; 
+                    font-weight: {{ section.settings.subheading_weight }};">
+            {{ section.settings.subheading }}
+          </p>
+        {% endif %}
+        
+        <h1 class="hero-title" 
+            style="font-size: {{ section.settings.title_size }}px; 
+                   font-weight: {{ section.settings.title_weight }}; 
+                   line-height: {{ section.settings.title_line_height }};">
+          {{ section.settings.title }}
+        </h1>
+        
+        {% if section.settings.description != blank %}
+          <p class="hero-description" 
+             style="font-size: {{ section.settings.description_size }}px; 
+                    line-height: {{ section.settings.description_line_height }};">
+            {{ section.settings.description }}
+          </p>
+        {% endif %}
+        
+        {% if section.settings.cta_text != blank and section.settings.show_button %}
+          <a href="{{ section.settings.cta_link | default: '/collections' }}" 
+             class="hero-cta hero-cta-{{ section.settings.button_style }}"
+             style="padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px; 
+                    border-radius: {{ section.settings.button_border_radius }}px; 
+                    font-size: {{ section.settings.button_font_size }}px;">
+            {{ section.settings.cta_text }}
+            {% if section.settings.show_button_arrow %}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {% endif %}
+          </a>
+        {% endif %}
+      </div>
+      
+      <!-- Imagen -->
+      <div class="hero-image {% if section.settings.reverse_layout %}order-1{% else %}order-2{% endif %}">
+        {% if section.settings.hero_image != blank %}
+          <img src="{{ section.settings.hero_image | image_url: width: 1000 }}" 
+               alt="{{ section.settings.title }}"
+               loading="eager"
+               class="hero-img"
+               style="border-radius: {{ section.settings.image_border_radius }}px; 
+                      max-width: {{ section.settings.image_max_width }}%;">
+        {% endif %}
+        
+        <!-- Elementos decorativos -->
+        {% if section.settings.show_decorations %}
+        <div class="hero-decorations">
+          <div class="decoration decoration-1" 
+               style="background: {{ section.settings.decoration_color }}; 
+                      opacity: {{ section.settings.decoration_opacity }}%;"></div>
+          <div class="decoration decoration-2" 
+               style="background: {{ section.settings.decoration_color }}; 
+                      opacity: {{ section.settings.decoration_opacity }}%;"></div>
+          <div class="decoration decoration-3" 
+               style="background: {{ section.settings.decoration_color }}; 
+                      opacity: {{ section.settings.decoration_opacity }}%;"></div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay">
+    <div class="mobile-menu-content">
+      <button class="mobile-menu-close">&times;</button>
+      <ul class="mobile-nav-menu">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'menu_item' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+              </li>
+          {% endcase %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Ocultar header tradicional Dawn solo en homepage - VERSIÓN FUERTE */
+.template-index .shopify-section-group-header-group,
+.template-index .header-wrapper,
+.template-index .shopify-section-header,
+.template-index .header,
+.template-index .section-header,
+.template-index [id*="header"],
+body.template-index .shopify-section-group-header-group {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Resetear cualquier padding/margin del body */
+.template-index body,
+.template-index main,
+.template-index .main-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Asegurar que hero esté completamente arriba */
+.template-index .hero-integrated {
+  margin-top: 0 !important;
+  position: relative;
+  top: 0 !important;
+}
+
+/* Hero Integrated Styles with Full Customization */
+.hero-integrated {
+  position: relative;
+  min-height: var(--hero-min-height);
+  background: var(--hero-bg-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background Image */
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.hero-bg-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  display: block !important;
+  
+  /* Overlay sólido (por defecto) */
+  background: black !important;
+  opacity: calc({{ section.settings.bg_overlay_opacity }} / 100) !important;
+}
+
+/* Overlay Gradient System */
+.hero-bg-overlay[data-overlay-type="gradient"] {
+  opacity: 1 !important;
+  background: none !important;
+}
+
+/* Gradiente Vertical - Arriba a Abajo */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="to-bottom"] {
+  background: linear-gradient(
+    to bottom,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Gradiente Vertical - Abajo a Arriba */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="to-top"] {
+  background: linear-gradient(
+    to top,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Gradiente Horizontal - Izquierda a Derecha */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="to-right"] {
+  background: linear-gradient(
+    to right,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Gradiente Horizontal - Derecha a Izquierda */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="to-left"] {
+  background: linear-gradient(
+    to left,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Gradiente Diagonal - Esquina Superior Izquierda a Inferior Derecha */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="to-bottom-right"] {
+  background: linear-gradient(
+    135deg,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Gradiente Diagonal - Esquina Superior Derecha a Inferior Izquierda */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="to-bottom-left"] {
+  background: linear-gradient(
+    225deg,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Gradiente Radial - Centro hacia Afuera */
+.hero-bg-overlay[data-overlay-type="gradient"][data-direction="radial"] {
+  background: radial-gradient(
+    circle at center,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_1 }} / 100)) 0%,
+    rgba({{ section.settings.gradient_color_1 | color_extract: 'red' }}, {{ section.settings.gradient_color_1 | color_extract: 'green' }}, {{ section.settings.gradient_color_1 | color_extract: 'blue' }}, calc(({{ section.settings.gradient_opacity_1 }} + {{ section.settings.gradient_opacity_2 }}) / 200)) {{ section.settings.gradient_midpoint }}%,
+    rgba({{ section.settings.gradient_color_2 | color_extract: 'red' }}, {{ section.settings.gradient_color_2 | color_extract: 'green' }}, {{ section.settings.gradient_color_2 | color_extract: 'blue' }}, calc({{ section.settings.gradient_opacity_2 }} / 100)) 100%
+  ) !important;
+}
+
+/* Navigation */
+.hero-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  background: transparent;
+  backdrop-filter: none;
+  min-height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Asegurar que la nav crezca con el logo */
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: calc(var(--logo-height) + 20px);
+}
+
+.nav-left {
+  flex: 1;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--nav-text-color);
+  font-weight: 500;
+  font-size: var(--nav-font-size);
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--nav-hover-color);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobile-menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--nav-text-color);
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Logo */
+.nav-center {
+  flex: 0 0 auto;
+}
+
+.logo-img {
+  height: var(--logo-height);
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--nav-text-color);
+}
+
+/* Nav Right */
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.nav-icon {
+  color: var(--nav-text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-icon:hover {
+  color: var(--nav-hover-color);
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Hero Content */
+.hero-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  z-index: 3;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* Hero Text */
+.hero-text {
+  max-width: 500px;
+  text-align: var(--text-align);
+}
+
+.hero-subheading {
+  color: var(--subheading-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  color: var(--description-color);
+  margin-bottom: 2rem;
+}
+
+/* Button Styles */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid var(--button-bg);
+}
+
+.hero-cta:hover {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  transform: translateY(-2px);
+}
+
+.hero-cta-rounded {
+  border-radius: 50px;
+}
+
+.hero-cta-square {
+  border-radius: 4px;
+}
+
+.hero-cta-outline {
+  background: transparent;
+  color: var(--button-bg);
+  border: 2px solid var(--button-bg);
+}
+
+.hero-cta-outline:hover {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+
+/* Hero Image */
+.hero-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  z-index: 2;
+  position: relative;
+}
+
+/* Decoraciones */
+.hero-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.decoration {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.decoration-1 {
+  width: 100px;
+  height: 100px;
+  top: 10%;
+  right: 10%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decoration-2 {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 5%;
+  animation: float 4s ease-in-out infinite reverse;
+}
+
+.decoration-3 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: -20px;
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Sticky Navigation with Glassmorphism */
+.hero-nav.scrolled {
+  position: fixed;
+  top: 0;
+  background: rgba(255, 255, 255, calc(var(--glass-opacity) / 100));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+  animation: slideDown 0.3s ease;
+  border-radius: 0;
+  z-index: 1000;
+}
+
+/* Glassmorphism effect enhancements */
+.hero-nav.scrolled::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.hero-nav.scrolled .nav-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mejorar contraste texto en sticky */
+.hero-nav.scrolled .nav-menu a,
+.hero-nav.scrolled .nav-icon,
+.hero-nav.scrolled .logo-text {
+  color: var(--nav-text-color);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.hero-nav.scrolled .mobile-menu-toggle span {
+  background: var(--nav-text-color);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile Menu */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 9999;
+  display: none;
+}
+
+.mobile-menu-content {
+  background: white;
+  height: 100%;
+  width: 280px;
+  padding: 2rem;
+  position: relative;
+}
+
+.mobile-menu-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.mobile-nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 3rem 0 0 0;
+}
+
+.mobile-nav-menu li {
+  margin-bottom: 1rem;
+}
+
+.mobile-nav-menu a {
+  color: #333;
+  text-decoration: none;
+  font-size: calc(var(--nav-font-size) + 2px);
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .hero-nav {
+    padding: 0.75rem 0;
+  }
+  
+  .hero-nav.scrolled {
+    padding: 0.5rem 0;
+  }
+  
+  .nav-container {
+    min-height: calc(var(--logo-height) * 0.8 + 15px);
+  }
+  
+  .hero-nav.scrolled .nav-container {
+    min-height: calc(var(--logo-height) * 0.7 + 10px);
+  }
+  
+  .logo-img {
+    height: calc(var(--logo-height) * 0.8);
+  }
+  
+  .hero-nav.scrolled .logo-img {
+    height: calc(var(--logo-height) * 0.7);
+    transition: height 0.3s ease;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .hero-text {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-right {
+    gap: 1rem;
+  }
+}
+</style>
+
+<script>
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  const overlay = document.querySelector('.mobile-menu-overlay');
+  const closeBtn = document.querySelector('.mobile-menu-close');
+  
+  if (toggleBtn && overlay) {
+    toggleBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+    
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  }
+
+  // Sticky Navigation with Glassmorphism on Scroll
+  const heroNav = document.querySelector('.hero-nav');
+  const heroSection = document.querySelector('.hero-integrated');
+  
+  if (heroNav && heroSection) {
+    const enableSticky = heroSection.style.getPropertyValue('--enable-sticky').trim() === 'true';
+    const scrollThreshold = parseInt(heroSection.style.getPropertyValue('--scroll-threshold')) || 100;
+
+    if (enableSticky) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        
+        if (scrolled > scrollThreshold) {
+          heroNav.classList.add('scrolled');
+        } else {
+          heroNav.classList.remove('scrolled');
+        }
+      });
+      
+      // Smooth scroll para enlaces internos
+      const navLinks = heroNav.querySelectorAll('a[href^="#"]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Hero Integrado",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 Diseño General"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#f8f6f0"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Imagen de fondo (opcional)"
+    },
+    {
+      "type": "range",
+      "id": "bg_overlay_opacity",
+      "label": "Opacidad overlay fondo (%) - Solo para overlay sólido",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "🎨 Sistema de Overlay Avanzado"
+    },
+    {
+      "type": "select",
+      "id": "overlay_type",
+      "label": "Tipo de overlay",
+      "options": [
+        { "value": "solid", "label": "Sólido (simple)" },
+        { "value": "gradient", "label": "Gradiente (avanzado)" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "Dirección del gradiente",
+      "options": [
+        { "value": "to-bottom", "label": "⬇️ Arriba → Abajo" },
+        { "value": "to-top", "label": "⬆️ Abajo → Arriba" },
+        { "value": "to-right", "label": "➡️ Izquierda → Derecha" },
+        { "value": "to-left", "label": "⬅️ Derecha → Izquierda" },
+        { "value": "to-bottom-right", "label": "↘️ Diagonal (↖️→↘️)" },
+        { "value": "to-bottom-left", "label": "↙️ Diagonal (↗️→↙️)" },
+        { "value": "radial", "label": "🔘 Radial (centro → afuera)" }
+      ],
+      "default": "to-bottom"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Color inicio del gradiente",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity_1",
+      "label": "Opacidad color inicio (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Color final del gradiente",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity_2",
+      "label": "Opacidad color final (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "gradient_midpoint",
+      "label": "Punto medio del gradiente (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "info": "Controla dónde ocurre la transición principal"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Presets de Gradiente Populares"
+    },
+    {
+      "type": "paragraph",
+      "content": "**Presets recomendados:** • **Texto legible:** Negro 60% → Transparente 0% (arriba→abajo) • **Efecto cinema:** Negro 80% → Negro 20% (arriba→abajo) • **Sunset:** Naranja 40% → Rosa 60% (diagonal) • **Minimal:** Blanco 30% → Transparente 0% (izquierda→derecha)"
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "label": "Altura hero (vh)",
+      "min": 60,
+      "max": 120,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Padding contenedor (px)",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "🧭 Navegación"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Mostrar navegación",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_desktop_menu",
+      "label": "Mostrar menú desktop",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Color fondo navegación",
+      "default": "rgba(255, 255, 255, 0.95)"
+    },
+    {
+      "type": "color",
+      "id": "nav_text_color",
+      "label": "Color texto navegación",
+      "default": "#2c3e37"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_color",
+      "label": "Color hover navegación",
+      "default": "#8b4513"
+    },
+    {
+      "type": "range",
+      "id": "nav_height",
+      "label": "Altura mínima navegación (px)",
+      "min": 60,
+      "max": 120,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "nav_font_size",
+      "label": "Tamaño fuente menú (px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "✨ Sticky Glassmorphism"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_nav",
+      "label": "Activar navegación sticky",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "scroll_threshold",
+      "label": "Distancia scroll para activar (px)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "glass_opacity",
+      "label": "Opacidad fondo glassmorphism (%)",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "glass_blur",
+      "label": "Intensidad blur glassmorphism (px)",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "🏷️ Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Texto logo (si no hay imagen)",
+      "default": "Pasión Frutos Secos"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Altura logo (px)",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "🔍 Iconos Navegación"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Mostrar búsqueda",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Mostrar cuenta",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Mostrar carrito",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_count",
+      "label": "Mostrar contador carrito",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "📝 Contenido"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "PREMIUM QUALITY"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Tamaño subtítulo (px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "subheading_weight",
+      "label": "Peso subtítulo",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título Principal",
+      "default": "Frutos Secos de Calidad Superior"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Tamaño título (px)",
+      "min": 28,
+      "max": 72,
+      "step": 2,
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Peso título",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "label": "Altura línea título",
+      "min": 1.0,
+      "max": 1.6,
+      "step": 0.1,
+      "default": 1.1
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descripción",
+      "default": "Descubre nuestra selección premium de frutos secos, cuidadosamente seleccionados para ofrecerte el mejor sabor y los máximos beneficios nutricionales."
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Tamaño descripción (px)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "label": "Altura línea descripción",
+      "min": 1.2,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alineación texto",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Colores"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Color primario",
+      "default": "#8b4513"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color título",
+      "default": "#2c3e37"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Color subtítulo",
+      "default": "#8b4513"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color descripción",
+      "default": "#5a6c57"
+    },
+    {
+      "type": "header",
+      "content": "🔘 Botón"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Mostrar botón",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del Botón",
+      "default": "Ver productos"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Enlace del Botón"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Estilo botón",
+      "options": [
+        { "value": "rounded", "label": "Redondeado" },
+        { "value": "square", "label": "Cuadrado" },
+        { "value": "outline", "label": "Outline" }
+      ],
+      "default": "rounded"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Color fondo botón",
+      "default": "#8b4513"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Color texto botón",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Color fondo hover",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Color texto hover",
+      "default": "#8b4513"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "label": "Padding horizontal botón (px)",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "label": "Padding vertical botón (px)",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius botón (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Tamaño fuente botón (px)",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrow",
+      "label": "Mostrar flecha en botón",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "🖼️ Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagen Principal"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "label": "Ancho máximo imagen (%)",
+      "min": 60,
+      "max": 120,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Border radius imagen (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "📐 Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_layout",
+      "label": "Invertir layout (imagen izq, texto der)",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "✨ Decoraciones"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_decorations",
+      "label": "Mostrar decoraciones",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "decoration_color",
+      "label": "Color decoraciones",
+      "default": "#8b4513"
+    },
+    {
+      "type": "range",
+      "id": "decoration_opacity",
+      "label": "Opacidad decoraciones (%)",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Enlace de Menú",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Página"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Integrado",
+      "blocks": [
+        {
+          "type": "menu_item",
+          "settings": {
+            "text": "Inicio",
+            "link": "/"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "text": "Tienda",
+            "link": "/collections"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "text": "Sobre Nosotros",
+            "link": "/pages/sobre-nosotros"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "text": "Contacto",
+            "link": "/pages/contacto"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "text": "Blog",
+            "link": "/blogs/blog"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
