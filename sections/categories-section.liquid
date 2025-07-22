@@ -179,11 +179,14 @@
 </div>
 
 <style>
-/* Categories Section Styles */
+/* ============================================
+   Categories Section Styles - Z-INDEX FIXED
+   ============================================ */
 .categories-section {
   padding: var(--section-padding-top) 0 var(--section-padding-bottom);
   background: var(--section-bg-color);
   position: relative;
+  z-index: 1; /* 🔥 FIX: Ensure section stays below sticky navigation (z-index: 1000) */
 }
 
 .categories-container {
@@ -231,6 +234,8 @@
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.6s ease forwards;
+  position: relative; /* Maintain stacking context within card */
+  z-index: auto; /* 🔥 FIX: Ensure cards don't create problematic stacking context */
 }
 
 @keyframes fadeInUp {
@@ -249,6 +254,7 @@
   transition: all var(--transition-duration) ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   height: 100%;
+  position: relative;
 }
 
 .category-link:hover {
@@ -294,6 +300,7 @@
   background: var(--overlay-color);
   opacity: 0;
   transition: opacity var(--transition-duration) ease;
+  z-index: 1; /* 🔥 FIX: Keep overlay within card context */
 }
 
 .category-link:hover .category-overlay {
@@ -318,6 +325,7 @@
   transition: all var(--transition-duration) ease;
   color: var(--primary-color);
   backdrop-filter: blur(10px);
+  z-index: 2; /* 🔥 FIX: Keep icon above overlay but within card */
 }
 
 .category-link:hover .category-hover-icon {
@@ -328,6 +336,8 @@
 /* Category Content */
 .category-content {
   padding: 1.5rem;
+  position: relative;
+  z-index: 3; /* 🔥 FIX: Ensure content is above overlay and icon */
 }
 
 .category-title {
@@ -421,6 +431,24 @@
   background: var(--primary-color) !important;
   color: white !important;
 }
+
+/* ============================================
+   Z-INDEX HIERARCHY DOCUMENTATION
+   ============================================
+   Hero Section (from hero-integrated.liquid):
+   .hero-bg-image: 1
+   .hero-bg-overlay: 2  
+   .hero-content: 3
+   .hero-nav: 100
+   .hero-nav.scrolled: 1000 ← STICKY NAVIGATION
+   .mobile-menu-overlay: 9999
+   
+   Categories Section (this file):
+   .categories-section: 1 ← MAIN SECTION (below sticky nav)
+   .category-overlay: 1 (within card context)
+   .category-hover-icon: 2 (within card context)
+   .category-content: 3 (within card context)
+   ============================================ */
 
 /* Responsive Design */
 @media (max-width: 1024px) {
