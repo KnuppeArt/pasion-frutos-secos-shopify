@@ -109,7 +109,7 @@ grid-template-columns: repeat(3, 1fr)
 |------------|------------|---------|---------------|----------------|
 | **Hero Integrado** | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 68 controles |
 | **Categorías Premium** | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 70+ controles |
-| **Productos Destacados** | ❌ 0% | ❌ 0% | ❌ 0% | ❌ Pendiente |
+| **Our Best Seller** | ❌ 0% | ❌ 0% | ❌ 0% | ❌ Pendiente |
 | **Banner Anuncio** | ❌ 0% | ❌ 0% | ❌ 0% | ❌ Pendiente |
 | **Instagram Feed** | ❌ 0% | ❌ 0% | ❌ 0% | ❌ Pendiente |
 | **Footer** | ❌ 0% | ❌ 0% | ❌ 0% | ❌ Pendiente |
@@ -161,7 +161,7 @@ grid-template-columns: repeat(3, 1fr)
 ## 🚀 **Próximos Pasos ACTUALIZADOS**
 
 ### **Sesión 3 (Próxima prioridad):**
-1. **Productos destacados** con health benefits
+1. **Our best seller** con health benefits
 2. **Testing integración** hero + categorías
 3. **Banner anuncio** personalizable  
 4. **Optimizaciones performance** generales
@@ -232,8 +232,8 @@ grid-template-columns: repeat(3, 1fr)
     "categories-premium": {
       "type": "categories-section"
     },
-    "featured-products": {
-      "type": "featured-products"
+    "our-best-seller": {
+      "type": "our-best-seller"
     },
     "banner-announcement": {
       "type": "banner-announcement"  
@@ -248,7 +248,7 @@ grid-template-columns: repeat(3, 1fr)
   "order": [
     "hero-integrated",
     "categories-premium", 
-    "featured-products",
+    "our-best-seller",
     "banner-announcement",
     "instagram-feed",
     "footer-premium"
@@ -260,7 +260,7 @@ grid-template-columns: repeat(3, 1fr)
 
 **💾 Último commit:** `feat: add complete categories-section.liquid with premium design`
 **🏷️ Próximo tag:** `v1.1-categories`
-**⏭️ Próximo objetivo:** Sección productos destacados
+**⏭️ Próximo objetivo:** Sección our best seller
 **📅 Próxima sesión:** TBD
 
 ---
