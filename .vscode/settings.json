@@ -1,0 +1,60 @@
+{
+  "liquid.format.enable": true,
+  "shopifyLiquid.snippetFormat": "tabstop",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "files.associations": {
+    "*.liquid": "liquid"
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "emmet.includeLanguages": {
+    "liquid": "html"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "liquid": true,
+    "html": true,
+    "css": true,
+    "javascript": true,
+    "json": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "shopifyLiquid.theme.autocomplete": true,
+  "shopifyLiquid.theme.hover": true,
+  "shopifyLiquid.theme.diagnostics": true,
+  "themeCheck.checkOnSave": true,
+  "themeCheck.checkOnOpen": true,
+  "css.validate": true,
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+  "workbench.colorTheme": "Default Dark Modern",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": true,
+  "breadcrumbs.enabled": true,
+  "editor.minimap.enabled": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80, 120],
+  "workbench.editor.enablePreview": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.shopify": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.shopify/**": true
+  }
+}
