@@ -1,0 +1,28 @@
+{
+  "recommendations": [
+    "sissel.shopify-liquid",
+    "github.copilot",
+    "github.copilot-chat",
+    "shopify.theme-check-vscode",
+    "ms-vscode.vscode-json",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.hexeditor",
+    "esbenp.prettier-vscode",
+    "ms-vscode-remote.remote-repositories",
+    "eamodio.gitlens",
+    "ms-vscode.live-server",
+    "pkief.material-icon-theme",
+    "oderwat.indent-rainbow",
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.references-view",
+    "github.vscode-github-actions"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-typescript",
+    "hookyqr.beautify"
+  ]
+}
