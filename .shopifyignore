@@ -1,0 +1,248 @@
+# ======================================
+# SHOPIFY IGNORE FILE
+# Optimiza deploys excluyendo archivos innecesarios
+# ======================================
+
+# ============================================
+# ARCHIVOS DE DESARROLLO Y CONFIGURACIÓN
+# ============================================
+
+# VS Code configuration
+.vscode/
+*.code-workspace
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+DEVELOPMENT_LOG.md
+CONTINUATION_GUIDE.md
+docs/
+*.md
+
+# Development files
+package.json
+package-lock.json
+yarn.lock
+composer.json
+composer.lock
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# ============================================
+# BUILD Y CACHE
+# ============================================
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build directories
+dist/
+build/
+.next/
+.nuxt/
+.cache/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+temp/
+
+# ============================================
+# SISTEMA OPERATIVO
+# ============================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ============================================
+# EDITORES E IDEs
+# ============================================
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================
+# LOGS Y DEBUGGING
+# ============================================
+
+# Log files
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# ============================================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# ============================================
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Archive files (no necesarios en theme)
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Image source files (usar solo optimizadas)
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# ============================================
+# SHOPIFY ESPECÍFICO
+# ============================================
+
+# Theme development files
+.shopify/
+shopify.theme.toml
+
+# Theme check reports
+.theme-check.yml
+
+# ============================================
+# SCRIPTS Y HERRAMIENTAS
+# ============================================
+
+# Scripts de desarrollo
+scripts/
+tools/
+.scripts/
+
+# Webpack y bundlers
+webpack.config.js
+rollup.config.js
+gulpfile.js
+Gruntfile.js
+
+# ============================================
+# TESTING
+# ============================================
+
+# Test directories
+test/
+tests/
+spec/
+specs/
+__tests__/
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# ============================================
+# CONFIGURACIÓN ADICIONAL
+# ============================================
+
+# ESLint
+.eslintrc*
+.eslintignore
+
+# Prettier
+.prettierrc*
+.prettierignore
+
+# Babel
+.babelrc*
+babel.config.*
+
+# TypeScript
+tsconfig.json
+tslint.json
+
+# PostCSS
+postcss.config.js
+
+# Stylelint
+.stylelintrc*
+
+# ============================================
+# SECURITY
+# ============================================
+
+# API Keys y secrets
+*.key
+*.pem
+*.p12
+*.crt
+.secret
+secrets/
+
+# ============================================
+# TEMPORAL Y CACHE
+# ============================================
+
+# Sass cache
+.sass-cache/
+
+# CSS source maps
+*.css.map
+
+# JS source maps
+*.js.map
